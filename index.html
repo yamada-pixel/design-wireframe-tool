@@ -1408,10 +1408,33 @@ body.comment-mode .panel:hover { outline: 2px dashed #EAB308; }
 
   /* ---- Refresh button ---- */
   document.getElementById('refreshBtn').addEventListener('click', function() {
-    if (!confirm('ワイヤーフレームをリセットします。\nコメントと未保存の変更が失われます。')) return;
-    window.location.hash = '';
-    window.location.reload();
+    if (!confirm('ワイヤーフレームをリセットします。\nコメントとすべてのページ内容が消去されます。')) return;
+    resetToBlank();
   });
+
+  function resetToBlank() {
+    comments.length = 0; overlay.innerHTML = ''; counter = 0;
+    renderList();
+    window.location.hash = '';
+    document.querySelectorAll('.panel').forEach(function(panel) {
+      var badge = panel.querySelector('.pnum-badge');
+      var pnum = badge ? badge.textContent.trim() : '';
+      var firstSpan = panel.querySelector('.panel-label > span:first-child');
+      if (firstSpan) firstSpan.textContent = pnum ? 'P' + pnum : 'ページ';
+      var role = panel.querySelector('.panel-label .role');
+      if (role) role.textContent = '';
+      var body = panel.querySelector('.panel-body');
+      if (body) {
+        body.innerHTML =
+          '<div style="flex:1;display:flex;align-items:center;justify-content:center;">' +
+            '<div style="text-align:center;color:#D1D5DB;border:2px dashed #E5E7EB;width:78%;padding:36px 0;">' +
+              '<div style="font-size:9px;font-weight:700;letter-spacing:0.12em;">BLANK</div>' +
+            '</div>' +
+          '</div>';
+      }
+    });
+    showToast('リセットしました');
+  }
 
   /* =============================================
      SHARE
