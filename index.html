@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LAGNET Premium Musk — リーフレット WF v0.6</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+  background: #CFCFCF;
+  color: #1a1a1a;
+  line-height: 1.5;
+}
+
+/* === Meta bar === */
+.meta-bar {
+  background: #1a1a1a; color: #f0f0f0;
+  padding: 11px 28px;
+  display: flex; justify-content: space-between; align-items: center;
+  position: sticky; top: 0; z-index: 200;
+  font-size: 12px; letter-spacing: 0.03em;
+}
+.meta-bar .title { font-weight: 700; }
+.meta-bar .specs { color: #aaa; font-size: 11px; }
+
+/* === Page === */
+.page { max-width: 1060px; margin: 36px auto 80px; padding: 0 48px; }
+
+/* === Banner === */
+.banner {
+  background: #FEF9C3; border-left: 4px solid #EAB308;
+  padding: 9px 14px; font-size: 11px; color: #713F12; margin-bottom: 28px;
+}
+
+/* === Overview strip === */
+.overview {
+  display: flex; align-items: center; gap: 4px;
+  margin-bottom: 32px; background: #fff;
+  padding: 12px 16px; border: 1px solid #E5E7EB; overflow-x: auto;
+}
+.ov-item { display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0; }
+.ov-page {
+  width: 36px; height: 51px; background: #F3F4F6; border: 1px solid #D1D5DB;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: #6B7280;
+}
+.ov-page.cover { background: #2d0f5e; color: rgba(255,255,255,0.8); border-color: #2d0f5e; }
+.ov-page.back  { background: #1e0a3c; color: rgba(255,255,255,0.6); border-color: #1e0a3c; }
+.ov-label { font-size: 9px; color: #9CA3AF; text-align: center; white-space: nowrap; }
+.ov-sep { width: 1px; height: 51px; background: #D1D5DB; flex-shrink: 0; }
+
+/* === Spread group === */
+.spread-group { margin-bottom: 48px; }
+.spread-heading { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.spread-heading h2 { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #374151; }
+.tag { font-size: 10px; color: #9CA3AF; background: #F3F4F6; padding: 2px 8px; border-radius: 2px; font-weight: 500; white-space: nowrap; }
+
+/* === Spread === */
+.spread { display: flex; align-items: stretch; box-shadow: 0 6px 24px rgba(0,0,0,0.22); }
+
+/* === Panel — B5縦: 420×594px === */
+.panel {
+  width: 420px; height: 594px;
+  background: #fff;
+  position: relative; display: flex; flex-direction: column;
+  overflow: hidden; flex-shrink: 0;
+}
+
+/* === Fold === */
+.fold {
+  width: 3px; flex-shrink: 0;
+  background: repeating-linear-gradient(to bottom, #9CA3AF 0px, #9CA3AF 7px, transparent 7px, transparent 12px);
+  position: relative;
+}
+.fold::after {
+  content: 'FOLD'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  background: #9CA3AF; color: #fff; font-size: 8px; font-weight: 700; letter-spacing: 0.1em;
+  padding: 3px 5px; border-radius: 2px; white-space: nowrap;
+}
+
+/* === Page number badge === */
+.pnum-badge {
+  position: absolute; bottom: 10px; right: 10px;
+  width: 26px; height: 26px; background: #5b21b6; color: #fff;
+  font-size: 12px; font-weight: 800; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; z-index: 20;
+}
+.panel.dark .pnum-badge { background: rgba(255,255,255,0.2); }
+
+/* === Panel label === */
+.panel-label {
+  position: absolute; top: 0; left: 0; right: 0;
+  background: rgba(91,33,182,0.88); color: #fff;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+  padding: 5px 10px; display: flex; justify-content: space-between; align-items: center;
+  z-index: 10;
+}
+.panel-label .role { opacity: 0.65; font-weight: 400; font-size: 9px; }
+
+/* === Panel body === */
+.panel-body {
+  padding: 30px 16px 40px; flex: 1;
+  display: flex; flex-direction: column; gap: 8px; overflow: hidden;
+}
+
+/* === Image placeholder === */
+.img-box {
+  background: #E5E7EB; display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden; flex-shrink: 0;
+}
+.img-box::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    linear-gradient(to bottom right, transparent calc(50% - 0.5px), #C9CDD5 calc(50% - 0.5px), #C9CDD5 calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+    linear-gradient(to bottom left,  transparent calc(50% - 0.5px), #C9CDD5 calc(50% - 0.5px), #C9CDD5 calc(50% + 0.5px), transparent calc(50% + 0.5px));
+}
+.img-box .lbl {
+  position: relative; z-index: 1;
+  background: rgba(255,255,255,0.85); padding: 5px 12px;
+  font-size: 11px; font-weight: 600; color: #374151;
+  text-align: center; line-height: 1.7; border-radius: 2px;
+}
+
+/* === Placeholder lines === */
+.ph   { height: 11px; background: #E5E7EB; border-radius: 2px; margin-bottom: 6px; }
+.ph-h { height: 18px; background: #D1D5DB; border-radius: 2px; margin-bottom: 6px; }
+.ph:last-child, .ph-h:last-child { margin-bottom: 0; }
+.w-100{width:100%} .w-95{width:95%} .w-90{width:90%} .w-80{width:80%}
+.w-70{width:70%}  .w-60{width:60%} .w-50{width:50%} .w-40{width:40%}
+
+/* === Section head === */
+.sec-head {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: #5b21b6; border-bottom: 1.5px solid #EDE9FE;
+  padding-bottom: 4px; margin-bottom: 5px; flex-shrink: 0;
+}
+
+/* === Real text (actual copy) === */
+.real { font-size: 10px; color: #374151; line-height: 1.55; flex-shrink: 0; }
+.real strong { color: #1a1a1a; font-weight: 700; }
+.real .small { font-size: 9px; color: #6B7280; }
+.headline { font-size: 14px; font-weight: 800; color: #1a1a1a; line-height: 1.35; margin-bottom: 6px; flex-shrink: 0; }
+.sub-headline { font-size: 11px; font-weight: 700; color: #374151; margin-bottom: 4px; flex-shrink: 0; }
+
+/* === Annotation === */
+.ann {
+  background: #F0FDF4; border-left: 2px solid #22C55E;
+  padding: 4px 8px; font-size: 9px; color: #166534;
+  border-radius: 0 2px 2px 0; flex-shrink: 0;
+}
+
+/* === Pain point bullet === */
+.pain-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+.pain-list li {
+  font-size: 10px; color: #374151; padding: 6px 8px 6px 24px;
+  background: #FEF2F2; border-left: 3px solid #EF4444;
+  position: relative; flex-shrink: 0;
+}
+.pain-list li::before { content: '✗'; position: absolute; left: 6px; color: #EF4444; font-weight: 700; }
+
+/* === Feature row === */
+.feat-row {
+  display: flex; align-items: flex-start; gap: 8px;
+  padding: 6px 0; border-bottom: 1px solid #F3F4F6; flex-shrink: 0;
+}
+.feat-row:last-child { border-bottom: none; padding-bottom: 0; }
+.feat-icon {
+  width: 26px; height: 26px; background: #EDE9FE; border-radius: 4px;
+  flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  font-size: 7px; font-weight: 700; color: #5b21b6;
+}
+.feat-title { font-size: 10px; font-weight: 700; color: #374151; margin-bottom: 3px; }
+
+/* === Fragrance Pyramid === */
+.pyr-wrap { display: flex; flex-direction: column; align-items: center; width: 100%; margin-top: 4px; }
+.pyr-tier { display: flex; flex-direction: column; gap: 3px; padding: 6px 10px; border: 1px solid #c4b5fd; }
+.pyr-tier + .pyr-tier { border-top: none; }
+.pyr-tier.top  { width: 46%; background: #F5F3FF; }
+.pyr-tier.mid  { width: 72%; background: #EDE9FE; }
+.pyr-tier.base { width: 100%; background: #DDD6FE; }
+.pyr-note { font-size: 8px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #4c1d95; margin-bottom: 2px; }
+.pyr-content { font-size: 9px; color: #4c1d95; }
+
+/* === Spec card === */
+.spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.spec-card {
+  border: 1px solid #E5E7EB; padding: 8px; text-align: center; flex-shrink: 0;
+}
+.spec-card .spec-num { font-size: 18px; font-weight: 800; color: #5b21b6; line-height: 1; }
+.spec-card .spec-unit { font-size: 9px; color: #5b21b6; font-weight: 600; }
+.spec-card .spec-label { font-size: 9px; color: #6B7280; margin-top: 3px; }
+
+/* === Skin badge === */
+.skin-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: #EDE9FE; border: 1px solid #c4b5fd;
+  padding: 3px 8px; border-radius: 20px;
+  font-size: 9px; font-weight: 700; color: #5b21b6; margin-bottom: 3px;
+}
+
+/* === Step card === */
+.step-card {
+  display: flex; align-items: flex-start; gap: 8px;
+  padding: 7px; border: 1px solid #E5E7EB; flex-shrink: 0;
+}
+.step-num {
+  width: 26px; height: 26px; background: #5b21b6; color: #fff;
+  border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 800;
+}
+.step-title { font-size: 10px; font-weight: 700; color: #1a1a1a; margin-bottom: 3px; }
+.step-timing { font-size: 8px; color: #5b21b6; font-weight: 600; margin-bottom: 3px; }
+
+/* === Body map === */
+.body-map-wrap { flex: 1; position: relative; overflow: hidden; }
+.body-map-inner { position: relative; width: 100%; height: 100%; }
+.co-photo {
+  position: absolute; z-index: 5;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+}
+.co-img {
+  width: 82px; height: 56px; background: #E5E7EB;
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid #D1D5DB;
+}
+.co-img::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    linear-gradient(to bottom right, transparent calc(50% - 0.5px), #C9CDD5 calc(50% - 0.5px), #C9CDD5 calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+    linear-gradient(to bottom left,  transparent calc(50% - 0.5px), #C9CDD5 calc(50% - 0.5px), #C9CDD5 calc(50% + 0.5px), transparent calc(50% + 0.5px));
+}
+.co-img .co-lbl {
+  position: relative; z-index: 1; background: rgba(255,255,255,0.85);
+  padding: 2px 6px; font-size: 9px; font-weight: 600; color: #374151;
+  border-radius: 2px; text-align: center; line-height: 1.4;
+}
+.co-name { font-size: 9px; font-weight: 700; color: #374151; }
+
+/* === Scene photo-main card === */
+.scene-big {
+  flex: 1; position: relative; overflow: hidden; min-height: 100px;
+}
+.scene-big .img-box { width: 100%; height: 100%; }
+.scene-big .scene-caption {
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 5;
+  background: linear-gradient(to top, rgba(30,10,60,0.85) 0%, transparent 100%);
+  padding: 16px 12px 8px;
+}
+.scene-caption .scene-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.6); margin-bottom: 3px;
+}
+.scene-caption .scene-title-text { font-size: 11px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+
+/* === Comparison table === */
+.compare-table { width: 100%; border-collapse: collapse; font-size: 9px; flex-shrink: 0; }
+.compare-table th, .compare-table td {
+  border: 1px solid #E5E7EB; padding: 5px 6px; text-align: center; vertical-align: middle;
+}
+.compare-table thead th { background: #F9FAFB; font-weight: 700; color: #6B7280; font-size: 9px; }
+.compare-table thead th.lagnet { background: #5b21b6; color: #fff; }
+.compare-table td.label { text-align: left; color: #374151; font-weight: 600; background: #F9FAFB; }
+.compare-table td.lagnet { color: #4c1d95; font-weight: 700; background: #F5F3FF; }
+.compare-table td.liquid { color: #6B7280; }
+
+/* === Review card === */
+.review-card {
+  border: 1px solid #E5E7EB; border-left: 3px solid #5b21b6;
+  padding: 7px 10px; flex-shrink: 0;
+}
+.review-text { font-size: 10px; color: #374151; line-height: 1.5; margin-bottom: 4px; }
+.review-author { font-size: 9px; color: #9CA3AF; }
+
+/* === Plan card === */
+.plan-card {
+  background: #1e0a3c; color: #fff; padding: 12px; flex-shrink: 0;
+}
+.plan-price { font-size: 24px; font-weight: 800; color: #fff; line-height: 1; }
+.plan-price span { font-size: 11px; font-weight: 500; opacity: 0.7; }
+.cta-btn {
+  background: #FFD700; color: #1a1a1a; font-size: 10px; font-weight: 800;
+  padding: 8px 12px; text-align: center; border-radius: 2px;
+  margin-top: 6px; flex-shrink: 0;
+}
+
+/* === Stat badge === */
+.stat-row { display: flex; gap: 6px; flex-wrap: wrap; flex-shrink: 0; }
+.stat-badge {
+  background: #FEF3C7; border: 1px solid #FCD34D;
+  padding: 4px 8px; font-size: 9px; font-weight: 700; color: #92400E;
+  border-radius: 2px; flex-shrink: 0;
+}
+
+/* === Divider === */
+.div { height: 1px; background: #E5E7EB; flex-shrink: 0; }
+
+/* === QR === */
+.qr-box {
+  width: 52px; height: 52px; background: #E5E7EB; border: 1px solid #D1D5DB;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; color: #9CA3AF; font-weight: 700; flex-shrink: 0;
+}
+
+/* === Comment system === */
+body { position: relative; }
+
+#comment-overlay {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none; z-index: 400;
+}
+.comment-marker {
+  position: absolute; pointer-events: all;
+  width: 24px; height: 24px;
+  background: #EAB308; color: #1a1a1a;
+  border-radius: 50%; border: 2px solid #fff;
+  font-size: 10px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  transition: transform 0.1s;
+  z-index: 1;
+}
+.comment-marker:hover { transform: translate(-50%, -50%) scale(1.25); }
+
+body.comment-mode .panel { cursor: crosshair; outline: 2px dashed transparent; transition: outline 0.15s; }
+body.comment-mode .panel:hover { outline: 2px dashed #EAB308; }
+
+.comment-input-popup {
+  position: fixed; z-index: 600;
+  background: #fff; border: 1px solid #E5E7EB; border-radius: 4px;
+  padding: 10px; width: 240px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+}
+.comment-input-popup textarea {
+  width: 100%; height: 64px; display: block;
+  border: 1px solid #E5E7EB; border-radius: 2px;
+  padding: 6px 8px; font-size: 12px; font-family: inherit;
+  resize: none; outline: none; margin-bottom: 8px;
+  color: #1a1a1a;
+}
+.comment-input-popup textarea:focus { border-color: #5b21b6; }
+.comment-popup-btns { display: flex; gap: 6px; }
+.comment-popup-btns .btn-ok {
+  flex: 1; background: #5b21b6; color: #fff;
+  border: none; padding: 7px; font-size: 11px; font-weight: 700;
+  border-radius: 2px; cursor: pointer;
+}
+.comment-popup-btns .btn-cancel {
+  background: #F3F4F6; color: #374151;
+  border: none; padding: 7px 12px; font-size: 11px;
+  border-radius: 2px; cursor: pointer;
+}
+.comment-popup-hint { font-size: 9px; color: #9CA3AF; margin-bottom: 6px; }
+
+.comment-toggle {
+  padding: 5px 12px; border-radius: 3px; border: 1px solid #6B7280;
+  background: #374151; color: #fff;
+  font-size: 11px; font-weight: 600; cursor: pointer; letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.comment-toggle.active { background: #EAB308; color: #1a1a1a; border-color: #EAB308; }
+
+.sidebar-toggle {
+  padding: 5px 12px; border-radius: 3px; border: 1px solid #6B7280;
+  background: #374151; color: #fff;
+  font-size: 11px; font-weight: 600; cursor: pointer; white-space: nowrap;
+  position: relative;
+}
+.sidebar-count {
+  position: absolute; top: -5px; right: -5px;
+  background: #EF4444; color: #fff;
+  width: 16px; height: 16px; border-radius: 50%;
+  font-size: 9px; font-weight: 800;
+  display: none; align-items: center; justify-content: center;
+}
+.sidebar-count.visible { display: flex; }
+
+.comment-sidebar {
+  position: fixed; right: 0; top: 44px;
+  width: 270px; height: calc(100vh - 44px);
+  background: #fff; border-left: 1px solid #E5E7EB;
+  box-shadow: -4px 0 20px rgba(0,0,0,0.12);
+  z-index: 300; display: flex; flex-direction: column;
+  transform: translateX(100%); transition: transform 0.2s ease;
+}
+.comment-sidebar.open { transform: translateX(0); }
+.comment-sidebar-head {
+  padding: 12px 14px; border-bottom: 1px solid #E5E7EB;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-shrink: 0;
+}
+.comment-sidebar-head h3 { font-size: 12px; font-weight: 700; color: #374151; }
+.sidebar-clear {
+  font-size: 10px; color: #EF4444; cursor: pointer; background: none; border: none;
+  font-weight: 600;
+}
+.sidebar-empty { text-align: center; color: #9CA3AF; font-size: 11px; padding: 28px 16px; }
+.comment-list { flex: 1; overflow-y: auto; padding: 6px 10px; }
+.comment-item {
+  display: flex; gap: 8px; padding: 9px 4px;
+  border-bottom: 1px solid #F3F4F6; align-items: flex-start;
+}
+.comment-item:last-child { border-bottom: none; }
+.c-num {
+  width: 22px; height: 22px; flex-shrink: 0;
+  background: #EAB308; color: #1a1a1a; border-radius: 50%;
+  font-size: 9px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 1px;
+}
+.c-body { flex: 1; min-width: 0; }
+.c-location { font-size: 9px; color: #9CA3AF; margin-bottom: 2px; }
+.c-text { font-size: 11px; color: #374151; line-height: 1.5; word-break: break-word; }
+.c-del {
+  background: none; border: none; color: #D1D5DB; font-size: 15px;
+  cursor: pointer; padding: 0 2px; line-height: 1; flex-shrink: 0;
+}
+.c-del:hover { color: #EF4444; }
+
+/* === Legend === */
+.legend { background: #fff; border: 1px solid #E5E7EB; padding: 18px 22px; margin-top: 8px; }
+.legend h3 { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #6B7280; margin-bottom: 14px; }
+.legend-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+.legend-item { display: flex; align-items: center; gap: 10px; font-size: 11px; color: #374151; }
+.legend-swatch { width: 32px; height: 20px; border-radius: 2px; flex-shrink: 0; }
+</style>
+</head>
+<body>
+
+<div class="meta-bar">
+  <span class="title">LAGNET Premium Musk — リーフレット WF v0.6</span>
+  <span class="specs" style="display:flex;align-items:center;gap:10px;">
+    <span>B5縦 中綴じ &nbsp;|&nbsp; 182×257mm &nbsp;|&nbsp; 8p &nbsp;|&nbsp; 2026.05.15</span>
+    <button class="comment-toggle" id="commentToggle">✎ コメント追加</button>
+    <button class="sidebar-toggle" id="sidebarToggle">コメント一覧 <span class="sidebar-count" id="sidebarCount">0</span></button>
+  </span>
+</div>
+
+<div class="page">
+
+  <div class="banner">
+    このファイルはレイアウト・構成確認用ワイヤーフレームです。実テキストは確定コピー入稿後に差し替えます。
+  </div>
+
+  <!-- Overview -->
+  <div class="overview">
+    <div class="ov-item"><div class="ov-page cover">P1</div><div class="ov-label">FV 全面写真</div></div>
+    <div class="ov-item" style="margin:0 4px;"><div style="font-size:9px;color:#bbb;">◀OUT▶</div></div>
+    <div class="ov-item"><div class="ov-page back">P8</div><div class="ov-label">FAQ・裏表紙</div></div>
+    <div class="ov-sep" style="margin:0 12px;"></div>
+    <div class="ov-item"><div class="ov-page">P2</div><div class="ov-label">コンセプト</div></div>
+    <div class="ov-item" style="margin:0 4px;"><div style="font-size:9px;color:#bbb;">◀S1▶</div></div>
+    <div class="ov-item"><div class="ov-page">P3</div><div class="ov-label">センスフィール</div></div>
+    <div class="ov-sep" style="margin:0 12px;"></div>
+    <div class="ov-item"><div class="ov-page">P4</div><div class="ov-label">賦香率・ケア</div></div>
+    <div class="ov-item" style="margin:0 4px;"><div style="font-size:9px;color:#bbb;">◀S2▶</div></div>
+    <div class="ov-item"><div class="ov-page">P5</div><div class="ov-label">使い方・部位</div></div>
+    <div class="ov-sep" style="margin:0 12px;"></div>
+    <div class="ov-item"><div class="ov-page">P6</div><div class="ov-label">利用シーン</div></div>
+    <div class="ov-item" style="margin:0 4px;"><div style="font-size:9px;color:#bbb;">◀S3▶</div></div>
+    <div class="ov-item"><div class="ov-page">P7</div><div class="ov-label">比較・口コミ</div></div>
+  </div>
+
+
+  <!-- ======= OUTSIDE: P8 | P1 ======= -->
+  <div class="spread-group">
+    <div class="spread-heading">
+      <h2>OUTSIDE — 表紙（閉じた状態）</h2>
+      <span class="tag">左: P8 FAQ・裏表紙</span><span class="tag">右: P1 FV 全面写真</span>
+    </div>
+    <div class="spread">
+
+      <!-- P8: FAQ + ブランド情報（裏表紙） -->
+      <div class="panel" style="background:#fff;">
+        <div class="panel-label">
+          <span>FAQ</span><span class="role">裏表紙</span>
+        </div>
+        <div class="panel-body" style="gap:7px;">
+          <div class="sec-head">よくあるご質問</div>
+
+          <div class="faq-item">
+            <div class="faq-row"><span class="qm">Q</span><div style="flex:1;font-size:10px;font-weight:700;color:#1a1a1a;">普通の香水と何が違うの？</div></div>
+            <div class="faq-row"><span class="am">A</span><div style="flex:1;" class="real">アルコール不使用の練り香水。肌に直接なじみ体温でゆっくり香ります。保湿成分配合でスキンケアも同時に。</div></div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-row"><span class="qm">Q</span><div style="flex:1;font-size:10px;font-weight:700;color:#1a1a1a;">どれくらい持続しますか？</div></div>
+            <div class="faq-row"><span class="am">A</span><div style="flex:1;" class="real">個人差はありますが約〇時間程度。体温の高い部位（首・手首）への塗布でさらに持続します。</div></div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-row"><span class="qm">Q</span><div style="flex:1;font-size:10px;font-weight:700;color:#1a1a1a;">センスフィールって何ですか？</div></div>
+            <div class="faq-row"><span class="am">A</span><div style="flex:1;" class="real">スペインの原料メーカーProvital社開発の複合植物成分（コレウスホルスコリ根エキス＋チャ葉エキス）。本製品では賦香成分として配合しています。</div></div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-row"><span class="qm">Q</span><div style="flex:1;font-size:10px;font-weight:700;color:#1a1a1a;">肌が弱いのですが使えますか？</div></div>
+            <div class="faq-row"><span class="am">A</span><div style="flex:1;" class="real">低刺激処方ですが、初めての方はパッチテストをお試しください。異常を感じた際は使用を中止し医師にご相談ください。</div></div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-row"><span class="qm">Q</span><div style="flex:1;font-size:10px;font-weight:700;color:#1a1a1a;">開封後の使用期限は？</div></div>
+            <div class="faq-row"><span class="am">A</span><div style="flex:1;" class="real">開封後〇ヶ月を目安に使い切ってください。直射日光・高温多湿を避けて保管してください。</div></div>
+          </div>
+
+          <div class="div" style="margin-top:auto;"></div>
+          <!-- ブランド情報 -->
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div class="qr-box">QR</div>
+            <div>
+              <div class="ph w-80" style="margin-bottom:4px;"></div>
+              <div class="ph w-60"></div>
+            </div>
+          </div>
+          <div class="ph w-70" style="background:#E5E7EB;"></div>
+        </div>
+        <div class="pnum-badge">8</div>
+      </div>
+
+      <div class="fold"></div>
+
+      <!-- P1: FV 全面写真 -->
+      <div class="panel dark" style="background:#000; padding:0;">
+        <div class="panel-label" style="background:rgba(0,0,0,0.35);">
+          <span>FV 表表紙</span><span class="role">写真全面使用 + 見出しオーバーレイ</span>
+        </div>
+        <!-- 全面写真 -->
+        <div class="img-box" style="flex:1; width:100%;">
+          <span class="lbl" style="background:rgba(0,0,0,0.5); color:#fff; border:1px dashed rgba(255,255,255,0.3);">
+            メインビジュアル写真<br>
+            <span style="font-weight:400; font-size:9px; opacity:0.7;">全面フルブリード（ページ全体）</span>
+          </span>
+        </div>
+        <!-- テキストオーバーレイ -->
+        <div style="position:absolute; bottom:0; left:0; right:0; z-index:10;
+          background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+          padding: 40px 16px 36px;">
+          <div style="font-size:8px; letter-spacing:0.18em; color:rgba(255,255,255,0.45); font-weight:600; margin-bottom:6px;">L A G N E T &nbsp; P R E M I U M &nbsp; M U S K</div>
+          <div style="font-size:15px; font-weight:800; color:#fff; line-height:1.3; margin-bottom:8px;">その香りに、<br>本能が目覚める。</div>
+          <div style="font-size:9px; color:rgba(255,255,255,0.7); line-height:1.5; margin-bottom:10px;">賦香率1.25倍、容量2倍。<br>昼も夜も、女心を揺さぶり続ける。</div>
+          <div style="background:#FFD700; color:#1a1a1a; font-size:9px; font-weight:800; padding:7px 10px; border-radius:2px; text-align:center;">
+            【初回限定990円（税込）】今すぐGet
+          </div>
+        </div>
+        <div class="pnum-badge" style="background:rgba(255,255,255,0.2);">1</div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ======= SPREAD 1: P2 | P3 ======= -->
+  <div class="spread-group">
+    <div class="spread-heading">
+      <h2>SPREAD 1</h2>
+      <span class="tag">左: P2 コンセプト</span><span class="tag">右: P3 特徴① センスフィール + 香調ピラミッド</span>
+    </div>
+    <div class="spread">
+
+      <!-- P2: コンセプト -->
+      <div class="panel dark" style="background:#1e0a3c;">
+        <div class="panel-label" style="background:rgba(0,0,0,0.4);">
+          <span>コンセプト</span><span class="role">ブランドフィロソフィー</span>
+        </div>
+        <div class="panel-body" style="justify-content:center; gap:0; align-items:center; text-align:center;">
+          <!-- BE A LADY MAGNET -->
+          <div style="margin-bottom:28px;">
+            <div style="font-size:36px; font-weight:800; color:#fff; line-height:1.15; letter-spacing:0.04em;">
+              BE A<br>LADY<br>MAGNET
+            </div>
+          </div>
+
+          <div style="width:40px; height:1px; background:rgba(255,255,255,0.25); margin-bottom:24px;"></div>
+
+          <!-- 説明テキスト -->
+          <div style="font-size:10.5px; color:rgba(255,255,255,0.8); line-height:1.9; max-width:320px;">
+            「LADY MAGNET」は、磁石（MAGNET）のように<br>
+            女性（LADY）を引き寄せる、<br>
+            つまり「女性にモテる男性」という意味。
+          </div>
+
+          <div style="margin:20px 0; font-size:10.5px; color:rgba(255,255,255,0.8); line-height:1.9; max-width:320px;">
+            モテる。それは人として魅力的であるということ。<br>
+            モテるための努力。それは人が成長していく<br>
+            ために必要なステップ。
+          </div>
+
+          <div style="width:40px; height:1px; background:rgba(255,255,255,0.25); margin-bottom:20px;"></div>
+
+          <div style="font-size:11px; font-weight:700; color:#fff; letter-spacing:0.04em;">
+            LAGNETで今日から始める、セルフプロデュース。
+          </div>
+        </div>
+        <div class="pnum-badge">2</div>
+      </div>
+
+      <div class="fold"></div>
+
+      <!-- P3: 特徴① センスフィール + 香調ピラミッド -->
+      <div class="panel">
+        <div class="panel-label">
+          <span>特徴① 成分を革新</span><span class="role">センスフィール + 香調ピラミッド</span>
+        </div>
+        <div class="panel-body">
+          <div class="sec-head">① 成分を革新</div>
+          <div class="sub-headline" style="font-size:12px;">本能レベルで女性が振り返る<br>進化系フレグランス</div>
+
+          <!-- センスフィール -->
+          <div class="feat-row" style="background:#F5F3FF; padding:6px;">
+            <div class="feat-icon" style="background:#5b21b6; color:#fff;">SF</div>
+            <div style="flex:1;">
+              <div class="feat-title">センスフィール™（賦香成分として）</div>
+              <div class="real" style="font-size:9px;">Provital社開発。コレウスホルスコリ根エキス＋チャ葉エキスの複合植物成分。「外から付ける」から「自ら放つ」へ。</div>
+            </div>
+          </div>
+
+          <!-- 香調ピラミッド -->
+          <div class="sec-head" style="margin-top:2px;">香調ピラミッド</div>
+          <div class="ann">TOP / MIDDLE / BASE ノートを3層で表示</div>
+          <div class="pyr-wrap">
+            <div class="pyr-tier top">
+              <div class="pyr-note">TOP NOTE</div>
+              <div class="pyr-content">ジャスミン・フレッシュグリーン</div>
+            </div>
+            <div class="pyr-tier mid">
+              <div class="pyr-note">MIDDLE NOTE</div>
+              <div class="pyr-content">ジャスミン×ムスク黄金比<br>女性の好感度を高める配合</div>
+            </div>
+            <div class="pyr-tier base">
+              <div class="pyr-note">BASE NOTE</div>
+              <div class="pyr-content">ウッディ＋アンバー<br>高級香水採用のベースノート。肌の温度でゆっくり浮き上がる</div>
+            </div>
+          </div>
+        </div>
+        <div class="pnum-badge">3</div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ======= SPREAD 2: P4 | P5 ======= -->
+  <div class="spread-group">
+    <div class="spread-heading">
+      <h2>SPREAD 2</h2>
+      <span class="tag">左: P4 特徴②③ 賦香率・ニオイケア</span>
+      <span class="tag">右: P5 使い方3ステップ + 全身ボディマップ</span>
+    </div>
+    <div class="spread">
+
+      <!-- P4: 特徴② ③ -->
+      <div class="panel">
+        <div class="panel-label">
+          <span>特徴② 持続力 + 特徴③ 清潔感</span><span class="role">P4</span>
+        </div>
+        <div class="panel-body">
+
+          <!-- ② 賦香率・容量 -->
+          <div class="sec-head">② 持続力を革新</div>
+          <div class="sub-headline">賦香率10% × 容量2倍に<br>アップグレード</div>
+          <div class="spec-grid">
+            <div class="spec-card">
+              <div class="spec-num">10<span class="spec-unit">%</span></div>
+              <div class="spec-label">賦香率（8%→10%）<br>より深く、より長く</div>
+            </div>
+            <div class="spec-card">
+              <div class="spec-num">20<span class="spec-unit">g</span></div>
+              <div class="spec-label">容量（10g→20g）<br>惜しみなく全身に</div>
+            </div>
+          </div>
+          <div class="real" style="background:#F5F3FF; padding:5px 7px; border-left:2px solid #5b21b6; font-size:9px;">
+            実質「2倍」使えるから、1日中途切れない自信。
+          </div>
+
+          <div class="div"></div>
+
+          <!-- ③ ニオイケア・スキンケア -->
+          <div class="sec-head">③ 清潔感を革新</div>
+          <div class="sub-headline">ニオイケア・スキンケアまで</div>
+          <div style="display:flex; flex-wrap:wrap; gap:4px; margin-bottom:5px;">
+            <div class="skin-badge">マグネシウム</div>
+            <div class="skin-badge">カキタンニン</div>
+            <div class="skin-badge">チャ葉エキス</div>
+            <div class="skin-badge">プロテオグリカン</div>
+            <div class="skin-badge">プラセンタ</div>
+            <div class="skin-badge">コラーゲン</div>
+          </div>
+          <div class="feat-row">
+            <div class="feat-icon">ニオイ</div>
+            <div style="flex:1;">
+              <div class="feat-title">ニオイケア</div>
+              <div class="real" style="font-size:9px;">カキタンニン・チャ葉エキス配合。香りのベールでニオイをカバー</div>
+            </div>
+          </div>
+          <div class="feat-row">
+            <div class="feat-icon">肌ケア</div>
+            <div style="flex:1;">
+              <div class="feat-title">スキンケア</div>
+              <div class="real" style="font-size:9px;">プロテオグリカン、プラセンタ、コラーゲン。塗るたびに肌が整う</div>
+            </div>
+          </div>
+        </div>
+        <div class="pnum-badge">4</div>
+      </div>
+
+      <div class="fold"></div>
+
+      <!-- P5: 使い方3ステップ + 全身ボディマップ -->
+      <div class="panel">
+        <div class="panel-label">
+          <span>使い方 3ステップ + 使用部位</span><span class="role">全身ボディマップ</span>
+        </div>
+        <div class="panel-body">
+          <div class="sec-head">昼も夜も自信をまとい、全身で惹き付けろ</div>
+
+          <!-- 3ステップ（コンパクト） -->
+          <div class="step-card">
+            <div class="step-num">1</div>
+            <div style="flex:1;">
+              <div class="step-timing">お風呂上がり・朝の着替え前に</div>
+              <div class="step-title">Base Make</div>
+              <div class="real" style="font-size:9px;">首筋・胸元・腕・足首までボディクリームのように広範囲に</div>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">2</div>
+            <div style="flex:1;">
+              <div class="step-timing">外出直前に</div>
+              <div class="step-title">Layering</div>
+              <div class="real" style="font-size:9px;">耳の裏・手首・うなじ。脈打つポイントに重ね付け</div>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">3</div>
+            <div style="flex:1;">
+              <div class="step-timing">デート中・夕方のニオイが気になる時</div>
+              <div class="step-title">Refresh</div>
+              <div class="real" style="font-size:9px;">脇・足元・耳の後ろを「清潔感と色気」で塗り替える</div>
+            </div>
+          </div>
+
+          <div class="div"></div>
+          <div class="ann">全身イラスト＋部位コールアウト写真 ↓</div>
+
+          <!-- Body map -->
+          <div class="body-map-wrap">
+            <div class="body-map-inner">
+              <!-- Lines SVG -->
+              <svg style="position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;" viewBox="0 0 388 190" preserveAspectRatio="none">
+                <line x1="207" y1="28" x2="290" y2="38" stroke="#9CA3AF" stroke-width="1" stroke-dasharray="4 3"/>
+                <circle cx="207" cy="28" r="4" fill="#5b21b6"/>
+                <line x1="207" y1="65" x2="290" y2="100" stroke="#9CA3AF" stroke-width="1" stroke-dasharray="4 3"/>
+                <circle cx="207" cy="65" r="4" fill="#5b21b6"/>
+                <line x1="168" y1="90" x2="100" y2="95" stroke="#9CA3AF" stroke-width="1" stroke-dasharray="4 3"/>
+                <circle cx="168" cy="90" r="4" fill="#5b21b6"/>
+              </svg>
+              <!-- Body SVG -->
+              <svg viewBox="0 0 100 260" style="position:absolute;left:50%;top:0;transform:translateX(-50%);width:72px;height:185px;z-index:3;">
+                <circle cx="50" cy="16" r="13" fill="#E5E7EB" stroke="#9CA3AF" stroke-width="1.5"/>
+                <rect x="43" y="28" width="14" height="11" fill="#E5E7EB" stroke="#9CA3AF" stroke-width="1"/>
+                <path d="M22,39 L78,39 L74,115 L26,115 Z" fill="#E5E7EB" stroke="#9CA3AF" stroke-width="1.5"/>
+                <path d="M22,39 L4,39 L0,108 L18,108 Z" fill="#E5E7EB" stroke="#9CA3AF" stroke-width="1"/>
+                <path d="M78,39 L96,39 L100,108 L82,108 Z" fill="#E5E7EB" stroke="#9CA3AF" stroke-width="1"/>
+                <rect x="26" y="115" width="20" height="140" rx="8" fill="#E5E7EB" stroke="#9CA3AF" stroke-width="1"/>
+                <rect x="54" y="115" width="20" height="140" rx="8" fill="#E5E7EB" stroke="#9CA3AF" stroke-width="1"/>
+              </svg>
+              <!-- Callout: 首筋 -->
+              <div class="co-photo" style="right:2px; top:10px;">
+                <div class="co-img"><span class="co-lbl">首筋</span></div>
+                <div class="co-name">STEP1&amp;2</div>
+              </div>
+              <!-- Callout: 胸元 -->
+              <div class="co-photo" style="right:2px; top:76px;">
+                <div class="co-img"><span class="co-lbl">胸元</span></div>
+                <div class="co-name">STEP1</div>
+              </div>
+              <!-- Callout: 手首 -->
+              <div class="co-photo" style="left:2px; top:68px;">
+                <div class="co-img"><span class="co-lbl">手首</span></div>
+                <div class="co-name">STEP2</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pnum-badge">5</div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ======= SPREAD 3: P6 | P7 ======= -->
+  <div class="spread-group">
+    <div class="spread-heading">
+      <h2>SPREAD 3</h2>
+      <span class="tag">左: P6 利用シーン（写真メイン）</span>
+      <span class="tag">右: P7 比較表 + 口コミ</span>
+    </div>
+    <div class="spread">
+
+      <!-- P6: 利用シーン 写真メイン -->
+      <div class="panel">
+        <div class="panel-label">
+          <span>利用シーン</span><span class="role">写真メイン 3シーン</span>
+        </div>
+        <div style="display:flex; flex-direction:column; flex:1; overflow:hidden;">
+          <!-- シーン1: お出かけ前 -->
+          <div class="scene-big" style="flex:1.2;">
+            <div class="img-box" style="width:100%; height:100%;">
+              <span class="lbl" style="font-size:10px;">シーン写真①</span>
+            </div>
+            <div class="scene-caption">
+              <div class="scene-label">STEP 1 · BASE MAKE</div>
+              <div class="scene-title-text">お出かけ前に</div>
+              <div style="font-size:9px; color:rgba(255,255,255,0.75);">朝のルーティンに溶け込む、全身ケア</div>
+            </div>
+          </div>
+          <!-- シーン2: 外出先 -->
+          <div class="scene-big" style="flex:1;">
+            <div class="img-box" style="width:100%; height:100%;">
+              <span class="lbl" style="font-size:10px;">シーン写真②</span>
+            </div>
+            <div class="scene-caption">
+              <div class="scene-label">STEP 2 · LAYERING</div>
+              <div class="scene-title-text">外出先で</div>
+              <div style="font-size:9px; color:rgba(255,255,255,0.75);">脈打つポイントに重ね付け</div>
+            </div>
+          </div>
+          <!-- シーン3: 自宅 -->
+          <div class="scene-big" style="flex:1;">
+            <div class="img-box" style="width:100%; height:100%;">
+              <span class="lbl" style="font-size:10px;">シーン写真③</span>
+            </div>
+            <div class="scene-caption">
+              <div class="scene-label">STEP 3 · REFRESH</div>
+              <div class="scene-title-text">夕方・自宅で</div>
+              <div style="font-size:9px; color:rgba(255,255,255,0.75);">香りと清潔感をリフレッシュ</div>
+            </div>
+          </div>
+        </div>
+        <div class="pnum-badge">6</div>
+      </div>
+
+      <div class="fold"></div>
+
+      <!-- P7: 比較表 + 口コミ -->
+      <div class="panel">
+        <div class="panel-label">
+          <span>比較表 + 口コミ・実績</span><span class="role">P7</span>
+        </div>
+        <div class="panel-body">
+          <!-- 比較表 -->
+          <div class="sec-head">なぜ、モテる男は「練り」を選ぶのか？</div>
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th style="width:30%;">比較項目</th>
+                <th>液体香水</th>
+                <th class="lagnet">LAGNET</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="label">香りの強さ</td>
+                <td class="liquid">つけ始め強め</td>
+                <td class="lagnet">ふんわり自然</td>
+              </tr>
+              <tr>
+                <td class="label">持続性</td>
+                <td class="liquid">揮発と共に変化</td>
+                <td class="lagnet">体温でゆっくり</td>
+              </tr>
+              <tr>
+                <td class="label">携帯性</td>
+                <td class="liquid">アトマイザー必要</td>
+                <td class="lagnet">厚さ約3cm</td>
+              </tr>
+              <tr>
+                <td class="label">ケア効果</td>
+                <td class="liquid">アルコール中心</td>
+                <td class="lagnet">美容成分配合</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="div"></div>
+
+          <!-- 口コミ -->
+          <div class="sec-head">愛用者の声</div>
+          <div class="review-card">
+            <div class="review-text">「以前より香りが長持ちするようになった。夜まで自信が続く。」</div>
+            <div class="review-author">42歳・経営者</div>
+          </div>
+          <div class="review-card">
+            <div class="review-text">「大容量になったので、耳の裏までしっかり塗れるのが嬉しい。」</div>
+            <div class="review-author">38歳・営業</div>
+          </div>
+
+          <div class="div"></div>
+
+          <!-- 実績 -->
+          <div class="sec-head">品質の根拠</div>
+          <div class="real" style="font-size:9px;">
+            日本国内製造・パラベン最小限・低刺激処方<br>
+            <span class="small">TikTok 累計再生11,246,031回（2026年4月15日現在）</span>
+          </div>
+        </div>
+        <div class="pnum-badge">7</div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- Legend -->
+  <div class="legend">
+    <h3>凡例</h3>
+    <div class="legend-grid">
+      <div class="legend-item"><div class="legend-swatch" style="background:#E5E7EB; border:1px solid #D1D5DB;"></div>画像プレースホルダー</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#FEF2F2; border-left:3px solid #EF4444;"></div>ペインポイント（赤）</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#F5F3FF; border-left:2px solid #5b21b6;"></div>ブランドアクセント（紫）</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#F5F3FF; border:1px solid #c4b5fd;"></div>香調ピラミッド Top Note</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#EDE9FE; border:1px solid #a78bfa;"></div>香調ピラミッド Middle Note</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#DDD6FE; border:1px solid #8b5cf6;"></div>香調ピラミッド Base Note</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#5b21b6;"></div>比較表 LAGNET列ハイライト</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#1e0a3c;"></div>ダークパープル（P1 FV / P8）</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#FFD700;"></div>CTAボタン（ゴールド）</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Comment overlay (全ページ上に乗るレイヤー) -->
+<div id="comment-overlay"></div>
+
+<!-- Comment sidebar -->
+<div class="comment-sidebar" id="commentSidebar">
+  <div class="comment-sidebar-head">
+    <h3>コメント一覧 <span id="cCount" style="color:#9CA3AF;font-weight:400;"></span></h3>
+    <button class="sidebar-clear" id="clearAll">すべて削除</button>
+  </div>
+  <div class="comment-list" id="commentList">
+    <div class="sidebar-empty">パネルをクリックして<br>コメントを追加できます</div>
+  </div>
+</div>
+
+<script>
+(function() {
+  let mode = false;
+  let counter = 0;
+  const comments = [];
+
+  const toggleBtn  = document.getElementById('commentToggle');
+  const sidebarBtn = document.getElementById('sidebarToggle');
+  const sidebar    = document.getElementById('commentSidebar');
+  const list       = document.getElementById('commentList');
+  const cCount     = document.getElementById('cCount');
+  const sBadge     = document.getElementById('sidebarCount');
+  const overlay    = document.getElementById('comment-overlay');
+  const clearBtn   = document.getElementById('clearAll');
+
+  /* ---- toggle comment mode ---- */
+  toggleBtn.addEventListener('click', function() {
+    mode = !mode;
+    toggleBtn.classList.toggle('active', mode);
+    toggleBtn.textContent = mode ? '✎ クリックして追加中…' : '✎ コメント追加';
+    document.body.classList.toggle('comment-mode', mode);
+    if (mode) sidebar.classList.add('open');
+  });
+
+  /* ---- toggle sidebar ---- */
+  sidebarBtn.addEventListener('click', function() {
+    sidebar.classList.toggle('open');
+  });
+
+  /* ---- place comment on click ---- */
+  document.addEventListener('click', function(e) {
+    if (!mode) return;
+    if (e.target.closest('.comment-input-popup')) return;
+    if (e.target.closest('.comment-marker')) return;
+    if (e.target.closest('.comment-sidebar')) return;
+    if (e.target.closest('.meta-bar')) return;
+
+    const panel = e.target.closest('.panel');
+    if (!panel) return;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    /* get panel label text */
+    const labelEl = panel.querySelector('.panel-label > span:first-child');
+    const location = labelEl ? labelEl.textContent.trim() : 'パネル';
+
+    showPopup(e.clientX, e.clientY, function(text) {
+      if (!text.trim()) return;
+      counter++;
+      const id = counter;
+
+      /* create marker on overlay */
+      const m = document.createElement('div');
+      m.className = 'comment-marker';
+      m.textContent = id;
+      m.dataset.id  = id;
+      m.style.top  = e.pageY + 'px';
+      m.style.left = e.pageX + 'px';
+      m.title = text;
+      m.addEventListener('click', function() {
+        sidebar.classList.add('open');
+        const item = list.querySelector('[data-id="' + id + '"]');
+        if (item) { item.scrollIntoView({behavior:'smooth', block:'center'}); item.style.background='#FFFBEB'; setTimeout(function(){item.style.background='';}, 1200); }
+      });
+      overlay.appendChild(m);
+
+      comments.push({ id, text, location });
+      renderList();
+      sidebar.classList.add('open');
+    });
+  });
+
+  /* ---- popup ---- */
+  function showPopup(cx, cy, cb) {
+    const old = document.querySelector('.comment-input-popup');
+    if (old) old.remove();
+
+    const p = document.createElement('div');
+    p.className = 'comment-input-popup';
+    const l = Math.min(cx + 8, window.innerWidth - 256);
+    const t = Math.min(cy + 8, window.innerHeight - 140);
+    p.style.left = l + 'px';
+    p.style.top  = t + 'px';
+    p.innerHTML =
+      '<div class="comment-popup-hint">Enter で確定 / Esc でキャンセル</div>' +
+      '<textarea placeholder="コメントを入力..."></textarea>' +
+      '<div class="comment-popup-btns">' +
+        '<button class="btn-cancel">キャンセル</button>' +
+        '<button class="btn-ok">追加</button>' +
+      '</div>';
+    document.body.appendChild(p);
+    const ta = p.querySelector('textarea');
+    ta.focus();
+
+    function confirm() {
+      const v = ta.value;
+      p.remove();
+      cb(v);
+    }
+    p.querySelector('.btn-ok').addEventListener('click', confirm);
+    p.querySelector('.btn-cancel').addEventListener('click', function() { p.remove(); });
+    ta.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); confirm(); }
+      if (e.key === 'Escape') p.remove();
+    });
+  }
+
+  /* ---- render list ---- */
+  function renderList() {
+    const n = comments.length;
+    cCount.textContent = n ? '（' + n + '件）' : '';
+    sBadge.textContent = n;
+    sBadge.classList.toggle('visible', n > 0);
+
+    if (n === 0) {
+      list.innerHTML = '<div class="sidebar-empty">コメントはまだありません</div>';
+      return;
+    }
+    list.innerHTML = comments.map(function(c) {
+      return '<div class="comment-item" data-id="' + c.id + '" style="transition:background 0.4s;">' +
+        '<div class="c-num">' + c.id + '</div>' +
+        '<div class="c-body">' +
+          '<div class="c-location">' + esc(c.location) + '</div>' +
+          '<div class="c-text">' + esc(c.text) + '</div>' +
+        '</div>' +
+        '<button class="c-del" onclick="deleteComment(' + c.id + ')">×</button>' +
+      '</div>';
+    }).join('');
+  }
+
+  /* ---- delete ---- */
+  window.deleteComment = function(id) {
+    const i = comments.findIndex(function(c) { return c.id === id; });
+    if (i > -1) comments.splice(i, 1);
+    const m = overlay.querySelector('.comment-marker[data-id="' + id + '"]');
+    if (m) m.remove();
+    renderList();
+  };
+
+  /* ---- clear all ---- */
+  clearBtn.addEventListener('click', function() {
+    if (!confirm('すべてのコメントを削除しますか？')) return;
+    comments.length = 0;
+    overlay.innerHTML = '';
+    counter = 0;
+    renderList();
+  });
+
+  /* ---- escape helper ---- */
+  function esc(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+})();
+</script>
+</body>
+</html>
