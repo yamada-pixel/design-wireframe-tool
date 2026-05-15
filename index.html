@@ -429,14 +429,156 @@ body.comment-mode .panel:hover { outline: 2px dashed #EAB308; }
 .legend-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
 .legend-item { display: flex; align-items: center; gap: 10px; font-size: 11px; color: #374151; }
 .legend-swatch { width: 32px; height: 20px; border-radius: 2px; flex-shrink: 0; }
+
+/* === Meta action buttons === */
+.meta-btn {
+  padding: 5px 11px; border-radius: 3px; border: 1px solid #6B7280;
+  background: #374151; color: #fff;
+  font-size: 11px; font-weight: 600; cursor: pointer;
+  letter-spacing: 0.02em; white-space: nowrap; line-height: 1;
+}
+.meta-btn:hover { background: #4B5563; }
+.meta-btn.primary { background: #5b21b6; border-color: #5b21b6; }
+.meta-btn.primary:hover { background: #6d28d9; }
+.meta-btn.warn { color: #FCA5A5; }
+.meta-btn.warn:hover { background: #991B1B; color: #fff; border-color: #991B1B; }
+.meta-sep { width: 1px; height: 16px; background: #4B5563; flex-shrink: 0; }
+
+/* === Modal === */
+.modal-backdrop {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.55);
+  z-index: 800; display: none;
+}
+.modal-backdrop.open { display: block; }
+.modal {
+  position: fixed; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 900; background: #fff; border-radius: 6px;
+  width: 520px; max-width: 94vw; max-height: 88vh;
+  display: none; flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  overflow: hidden;
+}
+.modal.open { display: flex; }
+.modal-head {
+  padding: 14px 18px; border-bottom: 1px solid #E5E7EB;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-shrink: 0;
+}
+.modal-head h3 { font-size: 13px; font-weight: 700; color: #1a1a1a; }
+.modal-close {
+  background: none; border: none; font-size: 18px; color: #9CA3AF;
+  cursor: pointer; line-height: 1; padding: 0 4px;
+}
+.modal-close:hover { color: #374151; }
+.modal-body { padding: 18px; overflow-y: auto; flex: 1; }
+.modal-footer {
+  padding: 12px 18px; border-top: 1px solid #E5E7EB;
+  display: flex; justify-content: flex-end; gap: 8px; flex-shrink: 0;
+}
+
+/* === Form === */
+.form-group { margin-bottom: 13px; }
+.form-group label {
+  display: block; font-size: 11px; font-weight: 700; color: #374151;
+  margin-bottom: 4px; letter-spacing: 0.03em;
+}
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%; padding: 7px 10px; border: 1px solid #D1D5DB;
+  border-radius: 3px; font-size: 12px; font-family: inherit;
+  color: #1a1a1a; outline: none; background: #fff;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: #5b21b6; }
+.form-group textarea { resize: vertical; min-height: 80px; }
+.form-hint { font-size: 10px; color: #9CA3AF; margin-top: 3px; }
+.form-row { display: flex; gap: 10px; }
+.form-row .form-group { flex: 1; }
+
+/* === Buttons === */
+.btn-primary {
+  background: #5b21b6; color: #fff; border: none;
+  padding: 8px 16px; font-size: 12px; font-weight: 700;
+  border-radius: 3px; cursor: pointer;
+}
+.btn-primary:hover { background: #6d28d9; }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-secondary {
+  background: #F3F4F6; color: #374151;
+  border: 1px solid #D1D5DB; padding: 8px 14px;
+  font-size: 12px; font-weight: 600; border-radius: 3px; cursor: pointer;
+}
+.btn-secondary:hover { background: #E5E7EB; }
+.btn-link { background: none; border: none; color: #5b21b6; font-size: 11px; font-weight: 600; cursor: pointer; padding: 0; }
+.btn-link:hover { text-decoration: underline; }
+
+/* === Save list === */
+.save-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px; border: 1px solid #E5E7EB; border-radius: 3px;
+  margin-bottom: 8px;
+}
+.save-item:last-child { margin-bottom: 0; }
+.save-name { font-size: 12px; font-weight: 700; color: #1a1a1a; flex: 1; }
+.save-meta { font-size: 10px; color: #9CA3AF; }
+.save-del { background: none; border: none; color: #D1D5DB; font-size: 16px; cursor: pointer; padding: 0 2px; }
+.save-del:hover { color: #EF4444; }
+
+/* === AI result table === */
+.ai-result { display: none; margin-top: 16px; }
+.ai-result.visible { display: block; }
+.ai-table { width: 100%; border-collapse: collapse; font-size: 10px; }
+.ai-table th { background: #5b21b6; color: #fff; padding: 6px 8px; text-align: left; font-size: 10px; letter-spacing: 0.04em; white-space: nowrap; }
+.ai-table td { border: 1px solid #E5E7EB; padding: 6px 8px; vertical-align: top; line-height: 1.5; }
+.ai-table tr:nth-child(even) td { background: #F9FAFB; }
+.ai-pnum { font-weight: 800; color: #5b21b6; white-space: nowrap; }
+.ai-loading { text-align: center; padding: 28px; color: #9CA3AF; font-size: 12px; }
+
+/* === Share URL === */
+.share-row { display: flex; gap: 6px; margin-top: 6px; }
+.share-row input {
+  flex: 1; padding: 7px 9px; border: 1px solid #D1D5DB;
+  border-radius: 3px; font-size: 11px; color: #374151;
+  background: #F9FAFB; outline: none;
+}
+.copy-btn {
+  background: #5b21b6; color: #fff; border: none;
+  padding: 7px 12px; font-size: 11px; font-weight: 700;
+  border-radius: 3px; cursor: pointer; white-space: nowrap;
+}
+.copy-btn.copied { background: #22C55E; }
+
+/* === API key notice === */
+.apikey-notice {
+  background: #FEF9C3; border: 1px solid #FCD34D;
+  padding: 10px 12px; border-radius: 3px; font-size: 11px; color: #713F12;
+  margin-bottom: 14px;
+}
+.apikey-notice a { color: #92400E; font-weight: 700; }
+
+/* === Toast === */
+.toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+  background: #1a1a1a; color: #fff; padding: 9px 18px;
+  border-radius: 4px; font-size: 12px; font-weight: 600;
+  z-index: 1000; opacity: 0; transition: opacity 0.2s;
+  pointer-events: none; white-space: nowrap;
+}
+.toast.show { opacity: 1; }
 </style>
 </head>
 <body>
 
 <div class="meta-bar">
-  <span class="title">LAGNET Premium Musk — リーフレット WF v0.6</span>
-  <span class="specs" style="display:flex;align-items:center;gap:10px;">
-    <span>B5縦 中綴じ &nbsp;|&nbsp; 182×257mm &nbsp;|&nbsp; 8p &nbsp;|&nbsp; 2026.05.15</span>
+  <span class="title">LAGNET Premium Musk — リーフレット WF v0.7</span>
+  <span class="specs" style="display:flex;align-items:center;gap:7px;flex-wrap:wrap;">
+    <span style="color:#aaa;font-size:11px;">B5縦 中綴じ &nbsp;|&nbsp; 182×257mm &nbsp;|&nbsp; 8p</span>
+    <span class="meta-sep"></span>
+    <button class="meta-btn primary" id="aiBtn">AI 台割生成</button>
+    <button class="meta-btn" id="saveBtn">保存</button>
+    <button class="meta-btn" id="loadBtn">読込 <span id="loadCount" style="background:#4B5563;border-radius:2px;padding:1px 5px;font-size:9px;margin-left:2px;"></span></button>
+    <button class="meta-btn" id="shareBtn">共有</button>
+    <button class="meta-btn warn" id="refreshBtn">リフレッシュ</button>
+    <span class="meta-sep"></span>
     <button class="comment-toggle" id="commentToggle">✎ コメント追加</button>
     <button class="sidebar-toggle" id="sidebarToggle">コメント一覧 <span class="sidebar-count" id="sidebarCount">0</span></button>
   </span>
@@ -537,17 +679,7 @@ body.comment-mode .panel:hover { outline: 2px dashed #EAB308; }
             <span style="font-weight:400; font-size:9px; opacity:0.7;">全面フルブリード（ページ全体）</span>
           </span>
         </div>
-        <!-- テキストオーバーレイ -->
-        <div style="position:absolute; bottom:0; left:0; right:0; z-index:10;
-          background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
-          padding: 40px 16px 36px;">
-          <div style="font-size:8px; letter-spacing:0.18em; color:rgba(255,255,255,0.45); font-weight:600; margin-bottom:6px;">L A G N E T &nbsp; P R E M I U M &nbsp; M U S K</div>
-          <div style="font-size:15px; font-weight:800; color:#fff; line-height:1.3; margin-bottom:8px;">その香りに、<br>本能が目覚める。</div>
-          <div style="font-size:9px; color:rgba(255,255,255,0.7); line-height:1.5; margin-bottom:10px;">賦香率1.25倍、容量2倍。<br>昼も夜も、女心を揺さぶり続ける。</div>
-          <div style="background:#FFD700; color:#1a1a1a; font-size:9px; font-weight:800; padding:7px 10px; border-radius:2px; text-align:center;">
-            【初回限定990円（税込）】今すぐGet
-          </div>
-        </div>
+        <!-- テキストオーバーレイ（全面写真のみ・テキストなし） -->
         <div class="pnum-badge" style="background:rgba(255,255,255,0.2);">1</div>
       </div>
 
@@ -936,6 +1068,147 @@ body.comment-mode .panel:hover { outline: 2px dashed #EAB308; }
 
 </div>
 
+<!-- ======= MODALS ======= -->
+<div class="modal-backdrop" id="modalBackdrop"></div>
+
+<!-- AI台割 -->
+<div class="modal" id="modalAI" style="width:680px;">
+  <div class="modal-head">
+    <h3>AI 台割生成</h3>
+    <button class="modal-close">×</button>
+  </div>
+  <div class="modal-body">
+    <div class="apikey-notice" id="apikeyNotice" style="display:none;">
+      Gemini APIキーが未設定です。<a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener">Google AI Studio</a> で無料取得後、下のフィールドに入力してください（ブラウザのみに保存）。
+    </div>
+    <div class="form-group">
+      <label>Gemini APIキー <span id="apikeyStatus" style="font-weight:400;color:#22C55E;"></span></label>
+      <div style="display:flex;gap:6px;">
+        <input type="password" id="geminiApiKey" placeholder="AIza..." style="flex:1;">
+        <button class="btn-secondary" id="saveApiKeyBtn" style="white-space:nowrap;">保存</button>
+      </div>
+      <div class="form-hint">キーはこのブラウザのlocalStorageにのみ保存されます。外部サーバーには送信されません。</div>
+    </div>
+    <div style="height:1px;background:#E5E7EB;margin:14px 0;"></div>
+    <div class="form-row">
+      <div class="form-group" style="flex:2;">
+        <label>商品名・サービス名 <span style="color:#EF4444;">*</span></label>
+        <input type="text" id="aiProduct" placeholder="例: LAGNET Premium Musk">
+      </div>
+      <div class="form-group" style="flex:1;">
+        <label>媒体タイプ</label>
+        <select id="aiMedia">
+          <option value="リーフレット（中綴じ）">リーフレット（中綴じ）</option>
+          <option value="リーフレット（二つ折り）">リーフレット（二つ折り）</option>
+          <option value="チラシ（A4片面）">チラシ（A4片面）</option>
+          <option value="パンフレット">パンフレット</option>
+          <option value="カタログ">カタログ</option>
+        </select>
+      </div>
+      <div class="form-group" style="flex:1;">
+        <label>総ページ数</label>
+        <select id="aiPages">
+          <option value="4">4ページ</option>
+          <option value="6">6ページ</option>
+          <option value="8" selected>8ページ</option>
+          <option value="12">12ページ</option>
+          <option value="16">16ページ</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>ターゲット</label>
+      <input type="text" id="aiTarget" placeholder="例: 30〜40代男性・自己投資意識が高いビジネスパーソン">
+    </div>
+    <div class="form-group">
+      <label>訴求ポイント・掲載コンテンツ <span style="color:#EF4444;">*</span></label>
+      <textarea id="aiMessages" rows="5" placeholder="例：&#10;・アルコール不使用の練り香水&#10;・センスフィール配合（賦香成分）&#10;・体温で香りが広がる&#10;・使用シーン（出勤前/デート）&#10;・液体香水との比較"></textarea>
+      <div class="form-hint">各ページに盛り込みたいコンテンツや訴求点を記入してください</div>
+    </div>
+    <div id="aiLoading" style="display:none;" class="ai-loading">Gemini が台割を生成中です...</div>
+    <div id="aiResult" class="ai-result">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+        <strong id="aiResultTitle" style="font-size:12px;color:#1a1a1a;"></strong>
+        <span style="font-size:10px;color:#9CA3AF;">生成結果（参考）</span>
+      </div>
+      <div id="aiResultTable" style="overflow-x:auto;"></div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn-secondary modal-close">閉じる</button>
+    <button class="btn-primary" id="aiGenerateBtn">AI生成</button>
+  </div>
+</div>
+
+<!-- 保存 -->
+<div class="modal" id="modalSave" style="width:360px;">
+  <div class="modal-head">
+    <h3>保存</h3>
+    <button class="modal-close">×</button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label>保存名</label>
+      <input type="text" id="saveName" placeholder="例: v1 デザイナー確認用">
+    </div>
+    <div style="font-size:11px;color:#6B7280;">現在のコメント状態を名前付きで保存します。</div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn-secondary modal-close">キャンセル</button>
+    <button class="btn-primary" id="saveConfirmBtn">保存する</button>
+  </div>
+</div>
+
+<!-- 読込 -->
+<div class="modal" id="modalLoad" style="width:480px;">
+  <div class="modal-head">
+    <h3>保存データを読み込む</h3>
+    <button class="modal-close">×</button>
+  </div>
+  <div class="modal-body" style="min-height:120px;">
+    <div id="saveListContainer"></div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn-secondary modal-close">閉じる</button>
+  </div>
+</div>
+
+<!-- 共有 -->
+<div class="modal" id="modalShare" style="width:460px;">
+  <div class="modal-head">
+    <h3>共有</h3>
+    <button class="modal-close">×</button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label>現在のコメント状態を共有</label>
+      <div class="form-hint" style="margin-bottom:6px;">このURLを共有すると、現在のコメントが付いた状態でワイヤーフレームを表示できます。</div>
+      <div class="share-row">
+        <input type="text" id="shareUrlInput" readonly>
+        <button class="copy-btn" id="copyUrlBtn">コピー</button>
+      </div>
+    </div>
+    <div style="height:1px;background:#E5E7EB;margin:18px 0;"></div>
+    <div class="form-group">
+      <label>全保存データの共有</label>
+      <div class="form-hint" style="margin-bottom:8px;">保存した全データをJSONファイルでエクスポートし、他のブラウザでインポートできます。</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="btn-primary" id="exportBtn">エクスポート（JSON）</button>
+        <label class="btn-secondary" style="cursor:pointer;padding:8px 14px;font-size:12px;font-weight:600;border-radius:3px;border:1px solid #D1D5DB;">
+          インポート
+          <input type="file" id="importFile" accept=".json" style="display:none;">
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn-secondary modal-close">閉じる</button>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
 <!-- Comment overlay (全ページ上に乗るレイヤー) -->
 <div id="comment-overlay"></div>
 
@@ -952,20 +1225,377 @@ body.comment-mode .panel:hover { outline: 2px dashed #EAB308; }
 
 <script>
 (function() {
-  let mode = false;
-  let counter = 0;
-  const comments = [];
+  /* =============================================
+     STORAGE KEYS
+  ============================================= */
+  var SAVES_KEY   = 'wf_saves';
+  var APIKEY_KEY  = 'wf_gemini_key';
 
-  const toggleBtn  = document.getElementById('commentToggle');
-  const sidebarBtn = document.getElementById('sidebarToggle');
-  const sidebar    = document.getElementById('commentSidebar');
-  const list       = document.getElementById('commentList');
-  const cCount     = document.getElementById('cCount');
-  const sBadge     = document.getElementById('sidebarCount');
-  const overlay    = document.getElementById('comment-overlay');
-  const clearBtn   = document.getElementById('clearAll');
+  function getSaves() {
+    try { return JSON.parse(localStorage.getItem(SAVES_KEY)) || []; } catch(e) { return []; }
+  }
+  function setSaves(saves) {
+    localStorage.setItem(SAVES_KEY, JSON.stringify(saves));
+    updateLoadCount();
+  }
+  function updateLoadCount() {
+    var n = getSaves().length;
+    var el = document.getElementById('loadCount');
+    if (el) el.textContent = n > 0 ? n : '';
+  }
 
-  /* ---- toggle comment mode ---- */
+  /* =============================================
+     COMMENT STATE
+  ============================================= */
+  var mode = false;
+  var counter = 0;
+  var comments = [];
+
+  var toggleBtn  = document.getElementById('commentToggle');
+  var sidebarBtn = document.getElementById('sidebarToggle');
+  var sidebar    = document.getElementById('commentSidebar');
+  var list       = document.getElementById('commentList');
+  var cCount     = document.getElementById('cCount');
+  var sBadge     = document.getElementById('sidebarCount');
+  var overlay    = document.getElementById('comment-overlay');
+  var clearBtn   = document.getElementById('clearAll');
+
+  /* =============================================
+     MODAL SYSTEM
+  ============================================= */
+  var backdrop = document.getElementById('modalBackdrop');
+
+  function openModal(id) {
+    backdrop.classList.add('open');
+    document.getElementById(id).classList.add('open');
+  }
+  function closeAllModals() {
+    backdrop.classList.remove('open');
+    document.querySelectorAll('.modal.open').forEach(function(m) { m.classList.remove('open'); });
+  }
+  backdrop.addEventListener('click', closeAllModals);
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeAllModals();
+      var pop = document.querySelector('.comment-input-popup');
+      if (pop) pop.remove();
+    }
+  });
+  document.querySelectorAll('.modal-close').forEach(function(btn) {
+    btn.addEventListener('click', closeAllModals);
+  });
+
+  /* =============================================
+     TOAST
+  ============================================= */
+  var toastTimer;
+  function showToast(msg, duration) {
+    duration = duration || 2500;
+    var t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function() { t.classList.remove('show'); }, duration);
+  }
+
+  /* =============================================
+     SAVE / LOAD
+  ============================================= */
+  function saveCurrentState(name) {
+    var saves = getSaves();
+    var idx = saves.findIndex(function(s) { return s.name === name; });
+    var entry = {
+      id: idx > -1 ? saves[idx].id : Date.now().toString(36) + Math.random().toString(36).slice(2),
+      name: name,
+      createdAt: idx > -1 ? saves[idx].createdAt : Date.now(),
+      updatedAt: Date.now(),
+      comments: JSON.parse(JSON.stringify(comments)),
+      commentCounter: counter
+    };
+    if (idx > -1) { saves[idx] = entry; } else { saves.push(entry); }
+    setSaves(saves);
+    showToast('「' + name + '」に保存しました');
+  }
+
+  function loadState(id) {
+    var saves = getSaves();
+    var save = saves.find(function(s) { return s.id === id; });
+    if (!save) return;
+    comments.length = 0;
+    overlay.innerHTML = '';
+    counter = 0;
+    (save.comments || []).forEach(function(c) {
+      comments.push(c);
+      addMarker(c.id, c.pageX, c.pageY, c.text, c.location);
+      if (c.id > counter) counter = c.id;
+    });
+    renderList();
+    closeAllModals();
+    showToast('「' + save.name + '」を読み込みました');
+  }
+
+  function deleteSave(id) {
+    if (!confirm('この保存データを削除しますか？')) return;
+    setSaves(getSaves().filter(function(s) { return s.id !== id; }));
+    renderSaveList();
+    showToast('削除しました');
+  }
+
+  function renameSave(id) {
+    var saves = getSaves();
+    var save = saves.find(function(s) { return s.id === id; });
+    if (!save) return;
+    var newName = prompt('新しい名前:', save.name);
+    if (!newName || !newName.trim()) return;
+    save.name = newName.trim();
+    setSaves(saves);
+    renderSaveList();
+    showToast('名前を変更しました');
+  }
+
+  function renderSaveList() {
+    var saves = getSaves();
+    var el = document.getElementById('saveListContainer');
+    if (!el) return;
+    if (!saves.length) {
+      el.innerHTML = '<div style="text-align:center;color:#9CA3AF;font-size:11px;padding:28px 0;">保存データはありません</div>';
+      return;
+    }
+    el.innerHTML = saves.slice().reverse().map(function(s) {
+      var d = new Date(s.updatedAt);
+      var ds = d.getFullYear() + '/' + String(d.getMonth()+1).padStart(2,'0') + '/' + String(d.getDate()).padStart(2,'0') +
+               ' ' + String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
+      return '<div class="save-item">' +
+        '<div style="flex:1;">' +
+          '<div class="save-name">' + esc(s.name) + '</div>' +
+          '<div class="save-meta">' + ds + ' &nbsp;·&nbsp; コメント ' + (s.comments||[]).length + '件</div>' +
+        '</div>' +
+        '<button class="btn-link" style="margin-right:8px;font-size:10px;" onclick="wfRename(\'' + s.id + '\')">名前変更</button>' +
+        '<button class="btn-primary" style="padding:5px 10px;font-size:10px;" onclick="wfLoad(\'' + s.id + '\')">読込</button>' +
+        '<button class="save-del" onclick="wfDelete(\'' + s.id + '\')">×</button>' +
+      '</div>';
+    }).join('');
+  }
+
+  window.wfLoad   = loadState;
+  window.wfDelete = deleteSave;
+  window.wfRename = renameSave;
+
+  /* ---- Save button ---- */
+  document.getElementById('saveBtn').addEventListener('click', function() {
+    var d = new Date();
+    document.getElementById('saveName').value =
+      d.getFullYear() + '/' + String(d.getMonth()+1).padStart(2,'0') + '/' + String(d.getDate()).padStart(2,'0') +
+      ' ' + String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
+    openModal('modalSave');
+    setTimeout(function() { document.getElementById('saveName').select(); }, 50);
+  });
+  document.getElementById('saveConfirmBtn').addEventListener('click', function() {
+    var name = document.getElementById('saveName').value.trim();
+    if (!name) { showToast('名前を入力してください'); return; }
+    saveCurrentState(name);
+    closeAllModals();
+  });
+  document.getElementById('saveName').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') document.getElementById('saveConfirmBtn').click();
+  });
+
+  /* ---- Load button ---- */
+  document.getElementById('loadBtn').addEventListener('click', function() {
+    renderSaveList();
+    openModal('modalLoad');
+  });
+
+  /* ---- Refresh button ---- */
+  document.getElementById('refreshBtn').addEventListener('click', function() {
+    if (!confirm('ワイヤーフレームをリセットします。\nコメントと未保存の変更が失われます。')) return;
+    window.location.hash = '';
+    window.location.reload();
+  });
+
+  /* =============================================
+     SHARE
+  ============================================= */
+  function generateShareURL() {
+    var state = { comments: comments, counter: counter };
+    try {
+      var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(state))));
+      return window.location.origin + window.location.pathname + '#wf=' + b64;
+    } catch(e) { return window.location.href; }
+  }
+
+  function loadFromHash() {
+    var hash = window.location.hash;
+    if (!hash.startsWith('#wf=')) return;
+    try {
+      var json = decodeURIComponent(escape(atob(hash.slice(4))));
+      var state = JSON.parse(json);
+      (state.comments || []).forEach(function(c) {
+        comments.push(c);
+        addMarker(c.id, c.pageX, c.pageY, c.text, c.location);
+        if (c.id > counter) counter = c.id;
+      });
+      renderList();
+    } catch(e) { /* ignore malformed hash */ }
+  }
+
+  function exportAllSaves() {
+    var data = JSON.stringify({ wf_saves: getSaves(), exportedAt: new Date().toISOString() }, null, 2);
+    var blob = new Blob([data], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = 'wf-saves-' + new Date().toISOString().slice(0,10) + '.json';
+    a.click(); URL.revokeObjectURL(url);
+  }
+
+  function importSaves(file) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      try {
+        var data = JSON.parse(e.target.result);
+        var newSaves = data.wf_saves || [];
+        var existing = getSaves();
+        newSaves.forEach(function(s) {
+          if (!existing.find(function(ex) { return ex.id === s.id; })) existing.push(s);
+        });
+        setSaves(existing);
+        renderSaveList();
+        showToast(newSaves.length + '件をインポートしました');
+      } catch(err) { showToast('インポートに失敗しました'); }
+    };
+    reader.readAsText(file);
+  }
+
+  document.getElementById('shareBtn').addEventListener('click', function() {
+    document.getElementById('shareUrlInput').value = generateShareURL();
+    openModal('modalShare');
+  });
+  document.getElementById('copyUrlBtn').addEventListener('click', function() {
+    var input = document.getElementById('shareUrlInput');
+    var btn = document.getElementById('copyUrlBtn');
+    navigator.clipboard.writeText(input.value).then(function() {
+      btn.textContent = 'コピー済み'; btn.classList.add('copied');
+      setTimeout(function() { btn.textContent = 'コピー'; btn.classList.remove('copied'); }, 2000);
+    });
+  });
+  document.getElementById('exportBtn').addEventListener('click', exportAllSaves);
+  document.getElementById('importFile').addEventListener('change', function(e) {
+    if (e.target.files[0]) importSaves(e.target.files[0]);
+    e.target.value = '';
+  });
+
+  /* =============================================
+     AI 台割生成 (Gemini API — client-side)
+  ============================================= */
+  var GEMINI_ENDPOINT = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
+
+  function getApiKey() { return localStorage.getItem(APIKEY_KEY) || ''; }
+  function setApiKey(key) { localStorage.setItem(APIKEY_KEY, key); }
+
+  function initApiKeyUI() {
+    var key = getApiKey();
+    var statusEl = document.getElementById('apikeyStatus');
+    var noticeEl = document.getElementById('apikeyNotice');
+    var inputEl  = document.getElementById('geminiApiKey');
+    if (key) {
+      statusEl.textContent = '設定済み';
+      inputEl.value = key;
+      noticeEl.style.display = 'none';
+    } else {
+      statusEl.textContent = '';
+      noticeEl.style.display = 'block';
+    }
+  }
+
+  document.getElementById('saveApiKeyBtn').addEventListener('click', function() {
+    var key = document.getElementById('geminiApiKey').value.trim();
+    if (!key) { showToast('APIキーを入力してください'); return; }
+    setApiKey(key);
+    initApiKeyUI();
+    showToast('APIキーを保存しました');
+  });
+
+  document.getElementById('aiBtn').addEventListener('click', function() {
+    document.getElementById('aiResult').classList.remove('visible');
+    document.getElementById('aiResultTable').innerHTML = '';
+    document.getElementById('aiLoading').style.display = 'none';
+    initApiKeyUI();
+    openModal('modalAI');
+  });
+
+  document.getElementById('aiGenerateBtn').addEventListener('click', function() {
+    var apiKey = getApiKey();
+    if (!apiKey) { showToast('Gemini APIキーを設定してください', 3000); return; }
+
+    var productName = document.getElementById('aiProduct').value.trim();
+    var mediaType   = document.getElementById('aiMedia').value;
+    var pageCount   = document.getElementById('aiPages').value;
+    var target      = document.getElementById('aiTarget').value.trim();
+    var messages    = document.getElementById('aiMessages').value.trim();
+
+    if (!productName || !messages) { showToast('商品名と訴求ポイントは必須です'); return; }
+
+    var btn = document.getElementById('aiGenerateBtn');
+    btn.disabled = true; btn.textContent = '生成中...';
+    document.getElementById('aiResult').classList.remove('visible');
+    document.getElementById('aiLoading').style.display = 'block';
+
+    var prompt = 'あなたは印刷物デザインの台割専門家です。以下の条件で台割プランを生成してください。\n\n' +
+      '商品名: ' + productName + '\n' +
+      '媒体形式: ' + mediaType + '\n' +
+      '総ページ数: ' + pageCount + '\n' +
+      'ターゲット: ' + (target || '未指定') + '\n' +
+      '訴求ポイント・掲載コンテンツ:\n' + messages + '\n\n' +
+      '以下のJSON形式のみで出力してください（コードブロック不要）:\n' +
+      '{"title":"台割タイトル","pages":[{"pageNum":1,"role":"ページ役割","layout":"レイアウトタイプ","mainContent":"主要コンテンツ（50字以内）","keyMessage":"核心メッセージ（40字以内）","designNote":"デザイン指示（40字以内）"}]}';
+
+    fetch(GEMINI_ENDPOINT + '?key=' + encodeURIComponent(apiKey), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+    })
+    .then(function(res) {
+      if (!res.ok) return res.json().then(function(e) { throw new Error((e.error && e.error.message) || 'API error ' + res.status); });
+      return res.json();
+    })
+    .then(function(data) {
+      var text = (data.candidates[0].content.parts[0].text || '').trim();
+      var match = text.match(/\{[\s\S]*\}/);
+      if (!match) throw new Error('JSON形式のレスポンスが取得できませんでした');
+      renderAIResult(JSON.parse(match[0]));
+    })
+    .catch(function(err) {
+      showToast('生成失敗: ' + err.message, 4000);
+    })
+    .finally(function() {
+      btn.disabled = false; btn.textContent = 'AI生成';
+      document.getElementById('aiLoading').style.display = 'none';
+    });
+  });
+
+  function renderAIResult(data) {
+    var pages = data.pages || [];
+    if (!pages.length) { showToast('台割データが取得できませんでした'); return; }
+    var html = '<table class="ai-table"><thead><tr>' +
+      '<th>P</th><th>役割</th><th>レイアウト</th><th>掲載コンテンツ</th><th>核心メッセージ</th><th>デザイン指示</th>' +
+      '</tr></thead><tbody>' +
+      pages.map(function(p) {
+        return '<tr><td class="ai-pnum">P' + p.pageNum + '</td>' +
+          '<td>' + esc(p.role||'') + '</td>' +
+          '<td>' + esc(p.layout||'') + '</td>' +
+          '<td>' + esc(p.mainContent||'') + '</td>' +
+          '<td>' + esc(p.keyMessage||'') + '</td>' +
+          '<td>' + esc(p.designNote||'') + '</td></tr>';
+      }).join('') +
+      '</tbody></table>';
+    document.getElementById('aiResultTitle').textContent = data.title || '台割プラン';
+    document.getElementById('aiResultTable').innerHTML = html;
+    document.getElementById('aiResult').classList.add('visible');
+  }
+
+  /* =============================================
+     COMMENT TOGGLE
+  ============================================= */
   toggleBtn.addEventListener('click', function() {
     mode = !mode;
     toggleBtn.classList.toggle('active', mode);
@@ -974,64 +1604,74 @@ body.comment-mode .panel:hover { outline: 2px dashed #EAB308; }
     if (mode) sidebar.classList.add('open');
   });
 
-  /* ---- toggle sidebar ---- */
   sidebarBtn.addEventListener('click', function() {
     sidebar.classList.toggle('open');
   });
 
-  /* ---- place comment on click ---- */
+  /* =============================================
+     COMMENT PLACEMENT
+  ============================================= */
   document.addEventListener('click', function(e) {
     if (!mode) return;
     if (e.target.closest('.comment-input-popup')) return;
     if (e.target.closest('.comment-marker')) return;
     if (e.target.closest('.comment-sidebar')) return;
     if (e.target.closest('.meta-bar')) return;
+    if (e.target.closest('.modal')) return;
+    if (e.target === backdrop) return;
 
-    const panel = e.target.closest('.panel');
+    var panel = e.target.closest('.panel');
     if (!panel) return;
 
     e.preventDefault();
     e.stopPropagation();
 
-    /* get panel label text */
-    const labelEl = panel.querySelector('.panel-label > span:first-child');
-    const location = labelEl ? labelEl.textContent.trim() : 'パネル';
+    var labelEl = panel.querySelector('.panel-label > span:first-child');
+    var location = labelEl ? labelEl.textContent.trim() : 'パネル';
+    var px = e.pageX, py = e.pageY, cx = e.clientX, cy = e.clientY;
 
-    showPopup(e.clientX, e.clientY, function(text) {
+    showPopup(cx, cy, function(text) {
       if (!text.trim()) return;
       counter++;
-      const id = counter;
-
-      /* create marker on overlay */
-      const m = document.createElement('div');
-      m.className = 'comment-marker';
-      m.textContent = id;
-      m.dataset.id  = id;
-      m.style.top  = e.pageY + 'px';
-      m.style.left = e.pageX + 'px';
-      m.title = text;
-      m.addEventListener('click', function() {
-        sidebar.classList.add('open');
-        const item = list.querySelector('[data-id="' + id + '"]');
-        if (item) { item.scrollIntoView({behavior:'smooth', block:'center'}); item.style.background='#FFFBEB'; setTimeout(function(){item.style.background='';}, 1200); }
-      });
-      overlay.appendChild(m);
-
-      comments.push({ id, text, location });
+      var id = counter;
+      addMarker(id, px, py, text, location);
+      comments.push({ id: id, text: text, location: location, pageX: px, pageY: py });
       renderList();
       sidebar.classList.add('open');
     });
   });
 
-  /* ---- popup ---- */
+  function addMarker(id, pageX, pageY, text, location) {
+    var m = document.createElement('div');
+    m.className = 'comment-marker';
+    m.textContent = id;
+    m.dataset.id = id;
+    m.style.top  = pageY + 'px';
+    m.style.left = pageX + 'px';
+    m.title = text;
+    m.addEventListener('click', function() {
+      sidebar.classList.add('open');
+      var item = list.querySelector('[data-id="' + id + '"]');
+      if (item) {
+        item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        item.style.background = '#FFFBEB';
+        setTimeout(function() { item.style.background = ''; }, 1200);
+      }
+    });
+    overlay.appendChild(m);
+  }
+
+  /* =============================================
+     POPUP
+  ============================================= */
   function showPopup(cx, cy, cb) {
-    const old = document.querySelector('.comment-input-popup');
+    var old = document.querySelector('.comment-input-popup');
     if (old) old.remove();
 
-    const p = document.createElement('div');
+    var p = document.createElement('div');
     p.className = 'comment-input-popup';
-    const l = Math.min(cx + 8, window.innerWidth - 256);
-    const t = Math.min(cy + 8, window.innerHeight - 140);
+    var l = Math.min(cx + 8, window.innerWidth - 256);
+    var t = Math.min(cy + 8, window.innerHeight - 140);
     p.style.left = l + 'px';
     p.style.top  = t + 'px';
     p.innerHTML =
@@ -1042,30 +1682,28 @@ body.comment-mode .panel:hover { outline: 2px dashed #EAB308; }
         '<button class="btn-ok">追加</button>' +
       '</div>';
     document.body.appendChild(p);
-    const ta = p.querySelector('textarea');
+    var ta = p.querySelector('textarea');
     ta.focus();
 
-    function confirm() {
-      const v = ta.value;
-      p.remove();
-      cb(v);
-    }
-    p.querySelector('.btn-ok').addEventListener('click', confirm);
+    function doConfirm() { var v = ta.value; p.remove(); cb(v); }
+    p.querySelector('.btn-ok').addEventListener('click', doConfirm);
     p.querySelector('.btn-cancel').addEventListener('click', function() { p.remove(); });
     ta.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); confirm(); }
+      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); doConfirm(); }
       if (e.key === 'Escape') p.remove();
     });
   }
 
-  /* ---- render list ---- */
+  /* =============================================
+     RENDER LIST
+  ============================================= */
   function renderList() {
-    const n = comments.length;
+    var n = comments.length;
     cCount.textContent = n ? '（' + n + '件）' : '';
     sBadge.textContent = n;
     sBadge.classList.toggle('visible', n > 0);
 
-    if (n === 0) {
+    if (!n) {
       list.innerHTML = '<div class="sidebar-empty">コメントはまだありません</div>';
       return;
     }
@@ -1081,28 +1719,32 @@ body.comment-mode .panel:hover { outline: 2px dashed #EAB308; }
     }).join('');
   }
 
-  /* ---- delete ---- */
   window.deleteComment = function(id) {
-    const i = comments.findIndex(function(c) { return c.id === id; });
+    var i = comments.findIndex(function(c) { return c.id === id; });
     if (i > -1) comments.splice(i, 1);
-    const m = overlay.querySelector('.comment-marker[data-id="' + id + '"]');
+    var m = overlay.querySelector('.comment-marker[data-id="' + id + '"]');
     if (m) m.remove();
     renderList();
   };
 
-  /* ---- clear all ---- */
   clearBtn.addEventListener('click', function() {
     if (!confirm('すべてのコメントを削除しますか？')) return;
-    comments.length = 0;
-    overlay.innerHTML = '';
-    counter = 0;
+    comments.length = 0; overlay.innerHTML = ''; counter = 0;
     renderList();
   });
 
-  /* ---- escape helper ---- */
+  /* =============================================
+     ESCAPE HELPER
+  ============================================= */
   function esc(s) {
-    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
+
+  /* =============================================
+     INIT
+  ============================================= */
+  updateLoadCount();
+  loadFromHash();
 })();
 </script>
 </body>
